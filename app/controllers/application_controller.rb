@@ -5,7 +5,16 @@ class ApplicationController < Sinatra::Base
   get "/" do
     trips = Trip.all
     trips.to_json
-    # { message: "Good luck with your project!" }.to_json
+  end
+
+  get "/users" do
+    users = User.all
+    users.to_json
+  end
+
+  get "/reviews" do
+    reviews = Review.all
+    reviews.to_json
   end
 
 end
