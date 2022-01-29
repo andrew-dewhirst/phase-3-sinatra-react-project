@@ -6,8 +6,8 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.integer :rating
       t.datetime :date_arrived
       t.datetime :date_departed
-      t.trip_id :integer
-      t.user_id :integer
+      t.integer :trip_id
+      t.integer :user_id
       t.timestamps
     end
   end
