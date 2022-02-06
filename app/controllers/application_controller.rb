@@ -14,7 +14,7 @@ class ApplicationController < Sinatra::Base
 
   get "/users" do
     users = User.all
-    users.to_json
+    users.to_json(include: :reviews)
   end
 
   get "/reviews" do
@@ -24,6 +24,19 @@ class ApplicationController < Sinatra::Base
 
   get '/reviews/:id' do
     review = Review.find(params[:id])
+    review.to_json
+  end
+
+  post '/reviews' do
+    review = Review.create(
+      activities_completed: params[:activities_completed],
+      comments: params[:comments],
+      rating: params[:rating],
+      date_arrived: params[:date_arrived],
+      date_departed: params[:date_departed],
+      trip_id: params[:trip_id],
+      user_id: params[:user_id]
+    )
     review.to_json
   end
 
