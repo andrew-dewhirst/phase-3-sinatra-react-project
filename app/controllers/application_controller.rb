@@ -7,24 +7,9 @@ class ApplicationController < Sinatra::Base
     trips.to_json(include: :reviews)
   end
 
-  get "/trips/:id" do
-    trip = Trip.find(params[:id])
-    trip.to_json(include: :reviews)
-  end
-
-  get "/users" do
-    users = User.all
-    users.to_json(include: :reviews)
-  end
-
   get "/reviews" do
     reviews = Review.all
     reviews.to_json
-  end
-
-  get '/reviews/:id' do
-    review = Review.find(params[:id])
-    review.to_json
   end
 
   post '/reviews' do
@@ -39,5 +24,11 @@ class ApplicationController < Sinatra::Base
     )
     review.to_json
   end
+
+  delete '/reviews/:id' do
+    review = Review.find(params[:id])
+    review.destroy
+    review.to_json
+  end 
 
 end
