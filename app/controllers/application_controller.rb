@@ -2,7 +2,7 @@ class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
   get "/trips" do
-    trips = Trip.all.order(:location)
+    trips = Trip.sort_by_location
     trips.to_json
   end
 
